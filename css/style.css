@@ -1,0 +1,39 @@
+.as-sortable-item,
+.as-sortable-placeholder {
+  width: 124px;
+  margin: 2px;
+  border: 1px solid #f00;
+  border-radius: 0;
+  list-style-type: none;
+  list-style: none;
+}
+.as-sortable-placeholder {
+  border: 1px solid #00f !important;
+}
+#sortable-container {
+  display: inline-block;
+}
+.grid {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+}
+.column {
+  width: 50%;
+  height: 100%;
+  display: row;
+}
+ul {
+  list-style-type: none;
+  margin: 2rem;
+}
+ul li {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
