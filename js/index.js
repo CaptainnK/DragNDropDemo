@@ -42,7 +42,11 @@ app.controller('MainCtrl', function ($scope) {
     console.log(arguments);
   });
 
+
+  
   $scope.sortableOptions = {
-    containment: '#sortable-container'
-  };
+        containment: '#table-container',
+        containerPositioning: 'relative'
+        //additionalPlaceholderClass: 'tablerow' 
+    };
 });
