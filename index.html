@@ -7,6 +7,8 @@
  <title>ng-sortable example</title>
  <link rel='stylesheet prefetch' href='https://a5hik.github.io/ng-sortable/dist/ng-sortable.style.min.css'>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Included fontawesome for bars icon-->
+ <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 
 <body>
@@ -26,7 +28,8 @@
       </thead>
       <tbody ng-model="items" as-sortable>
         <tr class="tablerow" ng-repeat="item in items" as-sortable-item>
-          <td as-sortable-item-handle>{{item.name}}</td>
+            <!-- ** Uses fontawesome script in head of page. Added draggable bars for user-friendly usage. Title attribute explains what to do -->
+          <td><span as-sortable-item-handle title="Drag this row to your preferred location."><i class="fas fa-bars"></i></span> {{item.name}}</td>
           <td>{{item.subjectcode}}</td>
           <td>{{item.coursecode}}</td>
           <td restrict access="INSTRUCTOR">
