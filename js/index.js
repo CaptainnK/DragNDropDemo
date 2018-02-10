@@ -47,6 +47,6 @@ app.controller('MainCtrl', function ($scope) {
   $scope.sortableOptions = {
         containment: '#table-container',
         containerPositioning: 'relative'
-        //additionalPlaceholderClass: 'tablerow' 
+        
     };
 });

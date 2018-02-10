@@ -5,7 +5,7 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <title>ng-sortable example</title>
- <link rel='stylesheet prefetch' href='https://a5hik.github.io/ng-sortable/dist/ng-sortable.style.min.css'>
+ <link rel="stylesheet" href='css/ng-sortable.css'>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -31,13 +31,13 @@
           <td>{{item.coursecode}}</td>
           <td restrict access="INSTRUCTOR">
           	<a ui-sref="app.courses.add_edit({courseId:'{{course.id}}'})">
-               <button type="button" class="btn btn-xs btn-default">
+               <button type="button" class="btn btn-xs btn-default pencil">
                  <span class="glyphicon glyphicon-pencil"></span>
                </button>
              </a>
           </td>
           <td restrict access="INSTRUCTOR">
-             <button type="button" class="btn btn-xs btn-warning" ng-click="coursesCtrl.dropCourse(course)">
+             <button type="button" class="btn btn-xs btn-warning trash" ng-click="coursesCtrl.dropCourse(course)">
                 <span class="glyphicon glyphicon-trash"></span>
              </button>
           </td>
@@ -48,10 +48,11 @@
   </div>
   </div>
   <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js'></script>
-  <script src='https://a5hik.github.io/ng-sortable/dist/ng-sortable.js'></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script  src="js/index.js"></script>
+  <script  src="js/ng-sortable.js"></script>
+  
+  
 </body>
 
 <style>
@@ -69,10 +70,7 @@ tr.as-sortable-placeholder{
     display: table-row !important;
 }
 
-tbody.as-sortable-drag,
-tbody.as-sortable-dragging {
-    display: table-row !important;
-}
+
 
 .as-sortable-item, .as-sortable-placeholder {
     
@@ -93,13 +91,29 @@ tbody.as-sortable-dragging {
 
 .as-sortable-placeholder {
 	display: table-row !important;
-	background-color: #00004;
+	
 }
 
 .as-sortable-drag {
     position: absolute;
+    border: 2px solid gray;
+    border-radius: 2px;
     pointer-events: none;
     z-index: 9999;
+    
+}
+
+.as-sortable-drag>tr>td{
+	
+	padding-right: 26em;
+}
+
+.as-sortable-drag>tr>td>.trash{
+	margin-right: 3.5em;
+}
+
+.as-sortable-drag>tr>td>.pencil{
+	padding-left: 16em;
 }
 
 .as-sortable-hidden {
