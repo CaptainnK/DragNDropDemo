@@ -37,16 +37,19 @@ app.controller('MainCtrl', function ($scope) {
     subjectcode: 'ASTR',
     coursecode: '657'
   }];
-  
+
   $scope.$watch('items', function () {
     console.log(arguments);
   });
 
+  $scope.dragControlListeners = {
+      orderChanged: function(event) {
+        console.log("Moving object:");
+        console.log($scope.items[event.dest.index]);
+        console.log("From: " + event.source.index +
+                    " -- To: " + event.dest.index);
+      },
+      containment: '#table-container'
+  };
 
-  
-  $scope.sortableOptions = {
-        containment: '#table-container',
-        containerPositioning: 'relative'
-        
-    };
 });

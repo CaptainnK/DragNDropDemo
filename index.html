@@ -5,10 +5,28 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <title>ng-sortable example</title>
- <link rel="stylesheet" href='css/ng-sortable.css'>
+ <link rel='stylesheet prefetch' href='https://a5hik.github.io/ng-sortable/dist/ng-sortable.min.css'>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Included fontawesome for bars icon-->
- <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+ <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js'></script>
+ <script src='https://a5hik.github.io/ng-sortable/dist/ng-sortable.js'></script>
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script  src="js/index.js"></script>
+
+ <style>
+
+   tr.as-sortable-item,
+   tr.as-sortable-placeholder {
+       display: table-row !important;
+   }
+
+   tbody.as-sortable-drag,
+   tbody.as-sortable-dragging {
+       display: table !important;
+       left: 15px !important;
+   }
+
+ </style>
 </head>
 
 <body>
@@ -16,7 +34,8 @@
   <div ng-app="example">
    <div class="row">
     <div class="col-md-12">
-    <table class="table table-hover" id="table-container" ng-controller="MainCtrl" as-sortable-drag>
+
+    <table id="table-container" class="table table-hover" ng-controller="MainCtrl">
       <thead>
         <tr>
           <th>Name</th>
@@ -26,21 +45,20 @@
           <th restrict access="INSTRUCTOR"></th>
         </tr>
       </thead>
-      <tbody ng-model="items" as-sortable>
+      <tbody ng-model="items" as-sortable="dragControlListeners">
         <tr class="tablerow" ng-repeat="item in items" as-sortable-item>
-            <!-- ** Uses fontawesome script in head of page. Added draggable bars for user-friendly usage. Title attribute explains what to do -->
-          <td><span as-sortable-item-handle title="Drag this row to your preferred location."><i class="fas fa-bars"></i></span> {{item.name}}</td>
+          <td as-sortable-item-handle>{{item.name}}</td>
           <td>{{item.subjectcode}}</td>
           <td>{{item.coursecode}}</td>
           <td restrict access="INSTRUCTOR">
           	<a ui-sref="app.courses.add_edit({courseId:'{{course.id}}'})">
-               <button type="button" class="btn btn-xs btn-default pencil">
+               <button type="button" class="btn btn-xs btn-default">
                  <span class="glyphicon glyphicon-pencil"></span>
                </button>
              </a>
           </td>
           <td restrict access="INSTRUCTOR">
-             <button type="button" class="btn btn-xs btn-warning trash" ng-click="coursesCtrl.dropCourse(course)">
+             <button type="button" class="btn btn-xs btn-warning" ng-click="coursesCtrl.dropCourse(course)">
                 <span class="glyphicon glyphicon-trash"></span>
              </button>
           </td>
@@ -50,89 +68,6 @@
   </div>
   </div>
   </div>
-  <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js'></script>
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script  src="js/index.js"></script>
-  <script  src="js/ng-sortable.js"></script>
-  
-  
 </body>
-
-<style>
-
-
-tr.lastMovedItem td,
-.lastMovedItem {
-    -webkit-animation: backgroundTransform 0.4s;
-    animation: backgroundTransform 0.4s;
-}
-
-
-tr.as-sortable-item,
-tr.as-sortable-placeholder{
-    display: table-row !important;
-}
-
-
-
-.as-sortable-item, .as-sortable-placeholder {
-    
-}
-
-.as-sortable-item {
-    -ms-touch-action: none;
-    touch-action: none;
-    /* to disable context menu on iOS devices */
-    -webkit-touch-callout: none;
-}
-
-.as-sortable-item-handle {
-    cursor: move;
-    cursor: -webkit-grab;
-    cursor: -moz-grab;
-}
-
-.as-sortable-placeholder {
-	display: table-row !important;
-	
-}
-
-.as-sortable-drag {
-    position: absolute;
-    border: 2px solid gray;
-    border-radius: 2px;
-    pointer-events: none;
-    z-index: 9999;
-    
-}
-
-.as-sortable-drag>tr>td{
-	padding-right: 20em;
-	margin-left: 2em;
-	
-}
-
-.as-sortable-drag>tr>td>.trash{
-	margin-right: 4em;
-}
-
-.as-sortable-drag>tr>td>.pencil{
-	padding-left: 16em;
-}
-
-.as-sortable-hidden {
-    display: none !important;
-}
-
-.as-sortable-un-selectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-</style>
-
 
 </html>
