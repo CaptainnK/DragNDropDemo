@@ -16,7 +16,7 @@
   <div ng-app="example">
    <div class="row">
     <div class="col-md-12">
-    <table class="table table-hover" id="table-container" ng-controller="MainCtrl" as-sortable-drag>
+    <table class="table table-hover" id="table-container" ng-controller="MainCtrl">
       <thead>
         <tr>
           <th>Name</th>
@@ -29,21 +29,21 @@
       <tbody ng-model="items" as-sortable>
         <tr class="tablerow" ng-repeat="item in items" as-sortable-item>
             <!-- ** Uses fontawesome script in head of page. Added draggable bars for user-friendly usage. Title attribute explains what to do -->
-          <td><span as-sortable-item-handle title="Drag this row to your preferred location."><i class="fas fa-bars"></i></span> {{item.name}}</td>
-          <td>{{item.subjectcode}}</td>
-          <td>{{item.coursecode}}</td>
-          <td restrict access="INSTRUCTOR">
+          <td colspan="1"><span class="name" as-sortable-item-handle>{{item.name}}</span></td>
+          <td colspan="1"><span class="subcode">{{item.subjectcode}}</span></td>
+          <td colspan="1"><span class="coursecode"></span>{{item.coursecode}}</span></td>
+          <td colspan="1" restrict access="INSTRUCTOR"><span class="pencil">
           	<a ui-sref="app.courses.add_edit({courseId:'{{course.id}}'})">
-               <button type="button" class="btn btn-xs btn-default pencil">
+               <button type="button" class="btn btn-xs btn-default">
                  <span class="glyphicon glyphicon-pencil"></span>
                </button>
-             </a>
+           </a></span>
           </td>
-          <td restrict access="INSTRUCTOR">
-             <button type="button" class="btn btn-xs btn-warning trash" ng-click="coursesCtrl.dropCourse(course)">
+          <td colspan="1" restrict access="INSTRUCTOR"><span class="trash">
+             <button type="button" class="btn btn-xs btn-warning" ng-click="coursesCtrl.dropCourse(course)">
                 <span class="glyphicon glyphicon-trash"></span>
              </button>
-          </td>
+          </span></td>
         </tr>
       </tbody>
    </table>
@@ -73,12 +73,6 @@ tr.as-sortable-placeholder{
     display: table-row !important;
 }
 
-
-
-.as-sortable-item, .as-sortable-placeholder {
-    
-}
-
 .as-sortable-item {
     -ms-touch-action: none;
     touch-action: none;
@@ -94,30 +88,42 @@ tr.as-sortable-placeholder{
 
 .as-sortable-placeholder {
 	display: table-row !important;
-	
 }
 
 .as-sortable-drag {
     position: absolute;
-    border: 2px solid gray;
-    border-radius: 2px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px grey;
     pointer-events: none;
     z-index: 9999;
-    
+    background-color: #F8F8F8;
+    width:10em;
+    padding-left:2em;
+}
+
+.as-sortable-drag>tr{
+	
+	
 }
 
 .as-sortable-drag>tr>td{
-	padding-right: 20em;
-	margin-left: 2em;
+	width:28em;
+	padding-left:2em;
+	padding-top:0.5em;
+	
+}
+
+.as-sortable-drag>tr>td>.pencil{
+
+	padding-left:13em;
 	
 }
 
 .as-sortable-drag>tr>td>.trash{
-	margin-right: 4em;
-}
 
-.as-sortable-drag>tr>td>.pencil{
-	padding-left: 16em;
+	padding-left:4em;
+	
 }
 
 .as-sortable-hidden {
